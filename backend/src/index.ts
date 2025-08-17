@@ -2,6 +2,14 @@ import express from "express"
 import bcrypt from "bcrypt"
 import { User } from "./db.js";
 import z from "zod"
+import mongoose from "mongoose";
+import dotenv from "dotenv"
+dotenv.config();
+
+if (!process.env.MONGO_URL) {
+    throw new Error("MONGO_URL environment variable is not defined.");
+}
+mongoose.connect(process.env.MONGO_URL);
 
 const schema = z.object({
     username: z.string().min(6),
