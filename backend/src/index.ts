@@ -6,10 +6,17 @@ import mongoose from "mongoose";
 import dotenv from "dotenv"
 dotenv.config();
 
-if (!process.env.MONGO_URL) {
+async function connection()
+{
+    if (!process.env.MONGO_URL) {
     throw new Error("MONGO_URL environment variable is not defined.");
 }
-mongoose.connect(process.env.MONGO_URL);
+
+    await mongoose.connect(process.env.MONGO_URL);
+
+}
+
+connection();
 
 const schema = z.object({
     username: z.string().min(6),
