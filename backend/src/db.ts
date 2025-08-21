@@ -1,11 +1,6 @@
 import mongoose, { mongo } from "mongoose"
 import dotenv from "dotenv"
-dotenv.config()
 
-if (!process.env.MONGO_URL) {
-	throw new Error("MONGO_URL environment variable is not defined.");
-}
-mongoose.connect(process.env.MONGO_URL)
 
 
 const userSchema = new mongoose.Schema({
